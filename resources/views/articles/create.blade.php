@@ -42,6 +42,27 @@
         input[type="file"] {
             padding: 0;
         }
+        .card-footer {
+            padding: 10px;
+            text-align: right;
+            background-color: #f1f1f1;
+            border-top: 1px solid #ddd;
+        }
+        .btn {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
         button {
             padding: 10px 15px;
             color: #fff;
@@ -53,6 +74,19 @@
         }
         button:hover {
             background-color: #0056b3;
+        }
+        .back-button {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #6c757d;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
@@ -92,8 +126,13 @@
             <textarea name="description" id="description" class="form-control"></textarea>
         </div>
 
-        <button type="submit">Ajouter</button>
+        <div class="card-footer">
+            <button type="submit">Ajouter</button>
+            <a href="{{ route('articles.index') }}" class="btn btn-secondary">Retour à la liste</a>
+        </div>
     </form>
+
+    
 </div>
 
 </body>

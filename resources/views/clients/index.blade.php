@@ -94,7 +94,7 @@
             <li><a href="{{ route('categories.index') }}">Catégorie</a></li>
             <li><a href="{{ route('clients.index') }}">Client</a></li>
             <li><a href="{{ route('commandes.index') }}">Commande</a></li>
-            <li><a href="{{ route('utilisateurs.index') }}">Utilisateur</a></li>
+            <li><a href="{{ route('users.index') }}">Utilisateur</a></li>
         </ul>
     </nav>
 

@@ -57,7 +57,28 @@
             font-size: 1.2em;
             color: #777;
         }
-
+        .card-footer {
+            padding: 10px;
+            text-align: right;
+            background-color: #f1f1f1;
+            border-top: 1px solid #ddd;
+        }
+        .btn {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
         .btn-validate,
         .btn-back {
             display: block;
@@ -130,7 +151,10 @@
         @endif
     </div>
 
-    <a href="{{ route('commandes.index') }}" class="btn-back">Retour à la liste des commandes</a>
+    <div class="card-footer">
+        <a href="{{ route('commandes.index') }}" class="btn-back">Retour à la liste des articles</a>
+    </div>
+    
 </body>
 
 </html>

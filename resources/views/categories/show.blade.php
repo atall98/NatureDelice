@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détails de la Catégorie</title>
+    <title>Détails de la catégorie</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,9 +12,44 @@
             margin: 0;
             padding: 0;
         }
+        .navbar {
+            background-color: #4CAF50;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        .navbar h1 {
+            margin-left: 20px;
+            font-size: 24px;
+            color: white;
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+            margin-right: 20px;
+        }
+        .navbar ul li {
+            display: inline;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navbar ul li a:hover {
+            background-color: #333;
+        }
         .container {
-            max-width: 800px;
-            margin: 40px auto;
+            max-width: 900px;
+            margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -23,25 +58,6 @@
             text-align: center;
             margin-bottom: 20px;
             color: #4CAF50;
-        }
-        .card {
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .card-header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            font-size: 1.2rem;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-        .card-body {
-            padding: 20px;
-        }
-        .card-body p {
-            font-size: 1.1rem;
         }
         .btn {
             padding: 10px 15px;
@@ -58,45 +74,15 @@
         .btn-primary:hover {
             background-color: #0056b3;
         }
-        .btn-secondary {
-            background-color: #6c757d;
-            color: white;
-            border: none;
-        }
-        .btn-secondary:hover {
-            background-color: #5a6268;
-        }
-        .btn-warning {
-            background-color: #ffc107;
-            color: black;
-            border: none;
-        }
-        .btn-warning:hover {
-            background-color: #e0a800;
-        }
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-        }
-        .btn-danger:hover {
-            background-color: #c82333;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Détails de la Catégorie</h1>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Nom : {{ $categorie->name }}</h5>
-                <p class="card-text">ID : {{ $categorie->id }}</p>
-                {{-- Uncomment below if timestamps are necessary --}}
-                {{-- <p class="card-text">Créée le : {{ $categorie->created_at->format('d/m/Y H:i') }}</p>
-                <p class="card-text">Modifiée le : {{ $categorie->updated_at->format('d/m/Y H:i') }}</p> --}}
-            </div>
-        </div>
-        <a href="{{ route('categories.index') }}" class="btn btn-primary mt-3">Retour à la liste</a>
+        <h1>Détails de la catégorie</h1>
+        <p><strong>ID :</strong> {{ $categorie->id }}</p>
+        <p><strong>Nom :</strong> {{ $categorie->name }}</p>
+        <p><strong>Description :</strong> {{ $categorie->description }}</p>
+        <a href="{{ route('categories.index') }}" class="btn btn-primary">Retour</a>
     </div>
 </body>
 </html>

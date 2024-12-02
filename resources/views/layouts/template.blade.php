@@ -84,7 +84,7 @@
             <li><a href="{{ route('categories.index') }}">Catégorie</a></li>
             <li><a href="{{ route('clients.index') }}">Client</a></li>
             <li><a href="{{ route('commandes.index') }}">Commande</a></li>
-            <li><a href="{{ route('utilisateurs.index') }}">Utilisateur</a></li>
+            <li><a href="{{ route('users.index') }}">Utilisateur</a></li>
         </ul>
     </nav>
 
@@ -93,7 +93,7 @@
         <h2>Bienvenue dans la gestion de fruits</h2>
         <div class="content">
             <p>Sélectionnez une section dans le menu pour gérer vos données.</p>
-            <p>Utilisez cet outil pour gérer efficacement les articles, clients, utilisateurs, catégories, permissions, et rôles associés à la vente de fruits.</p>
+            <p>Utilisez cet outil pour gérer efficacement les articles, clients, users, catégories, permissions, et rôles associés à la vente de fruits.</p>
         </div>
     </div>
 

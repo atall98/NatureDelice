@@ -59,7 +59,7 @@
 <body>
 
 <div class="container">
-    <h1>Ajouter un Client</h1>
+    <h1>Les Informations de la Livraison</h1>
 
     <form action="{{ route('clients.store') }}" method="POST">
         @csrf

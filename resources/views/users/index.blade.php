@@ -53,6 +53,31 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        .btn {
+            padding: 10px 15px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #007bff;
+        }
+        .btn-warning {
+            background-color: #f0ad4e;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-warning:hover {
+            background-color: #ec971f;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -72,7 +97,7 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-        .action-buttons a, .action-buttons form button {
+        /* .action-buttons a, .action-buttons form button {
             background-color: #007bff;
             color: white;
             padding: 5px 10px;
@@ -81,12 +106,15 @@
             cursor: pointer;
             text-decoration: none;
         }
+        .action-buttons a:hover {
+            background-color: #0056b3;
+        }
         .action-buttons form button {
             background-color: #dc3545;
         }
-        .action-buttons a:hover, .action-buttons form button:hover {
-            background-color: #0056b3;
-        }
+        .action-buttons form button:hover {
+            background-color: #c82333;
+        } */
         .add-user {
             display: inline-block;
             background-color: #28a745;
@@ -109,38 +137,39 @@
         <li><a href="{{ route('categories.index') }}">Catégorie</a></li>
         <li><a href="{{ route('clients.index') }}">Client</a></li>
         <li><a href="{{ route('commandes.index') }}">Commande</a></li>
-        <li><a href="{{ route('utilisateurs.index') }}">Utilisateur</a></li>
+        <li><a href="{{ route('users.index') }}">Utilisateur</a></li>
     </ul>
 </nav>
 
-    <div class="container">
-        <h1>Liste des utilisateurs</h1>
-        <a href="{{ route('utilisateurs.create') }}" class="add-user">Ajouter un utilisateur</a>
-        <table>
-            <thead>
+<div class="container">
+    <h1>Liste des Utilisateurs</h1>
+    <a href="{{ route('users.create') }}" class="add-user">Ajouter un user</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($users as $user)
                 <tr>
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>Actions</th>
+                    <td>{{ $user->nom }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td class="btn">
+                        <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary">Voir</a>
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Éditer</a>
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')">Supprimer</button>
+                        </form>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach($utilisateurs as $utilisateur)
-                    <tr>
-                        <td>{{ $utilisateur->nom }}</td>
-                        <td>{{ $utilisateur->email }}</td>
-                        <td class="action-buttons">
-                            <a href="{{ route('utilisateurs.edit', $utilisateur->id) }}">Éditer</a>
-                            <form action="{{ route('utilisateurs.destroy', $utilisateur->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Supprimer</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

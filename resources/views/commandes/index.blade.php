@@ -96,49 +96,87 @@
             width: 100%;
             height: 20vh;
         }
+
+        .search-button,
+        .back-to-index-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .search-button:hover,
+        .back-to-index-button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar">
         <h1>Gestion de Fruits</h1>
-        <ul>
-            <li><a href="{{ route('articles.index') }}">Article</a></li>
-            <!-- Boutons pour les catégories -->
-    <div class="categories-buttons">
-        @foreach ($categories as $categorie)
-            <a href="#categorie_{{ $categorie->id }}">{{ $categorie->name }}</a>
-        @endforeach
-    </div>
-        </ul>
+
+        <!-- Boutons pour les catégories -->
+        <div class="categories-buttons">
+            @foreach ($categories as $categorie)
+                <a href="#categorie_{{ $categorie->id }}">{{ $categorie->name }}</a>
+            @endforeach
+        </div>
+
+        <!-- Formulaire de recherche -->
+        <form action="{{ route('commandes.search') }}" method="GET" style="display: flex; align-items: center;">
+            <input type="text" name="query" placeholder="Rechercher un article..."
+                style="padding: 5px; border-radius: 5px; border: 1px solid #ccc; margin-right: 10px;">
+            <button type="submit"
+                style="background-color: #ffdd57; color: black; border: none; padding: 5px 10px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                Rechercher
+            </button>
+        </form>
+
         <a href="{{ route('commandes.panier') }}" class="panier-button">Voir le panier</a>
     </nav>
 
-    
-
-    <h1>Liste des Articles</h1> 
-
+    <!-- Affichage des résultats de recherche par catégorie -->
     @foreach ($categories as $categorie)
-        <div class="categorie" id="categorie_{{ $categorie->id }}">
-            <h2>{{ $categorie->nom }}</h2>
-            <div>
-                @foreach ($categorie->articles as $article)
-                    <div class="article">
-                        <img src="{{ asset('storage/' . $article->image) }}" alt="Image de l'article">
-                        <h3>{{ $article->titre }}</h3>
-                        <p>{{ $article->prix }} FCFA</p>
-                        <form action="{{ route('commandes.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="article_id" value="{{ $article->id }}">
-                            <label for="quantite_{{ $article->id }}">Quantité en Kg:</label>
-                            <input type="number" name="quantite" id="quantite_{{ $article->id }}" min="1" required>
-                            <button type="submit">Ajouter au panier</button>
-                        </form>
-                    </div>
-                @endforeach
+        <!-- Vérifier si la catégorie contient des articles correspondant à la recherche -->
+        @if($categorie->articles->isNotEmpty())
+            <div class="categorie" id="categorie_{{ $categorie->id }}">
+                <h2>{{ $categorie->nom }}</h2>
+                <div>
+                    @foreach ($categorie->articles as $article)
+                        <div class="article">
+                            <img src="{{ asset('storage/' . $article->image) }}" alt="Image de l'article">
+                            <h3>{{ $article->titre }}</h3>
+                            <p>{{ $article->prix }} FCFA</p>
+                            <form action="{{ route('commandes.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                                <label for="quantite_{{ $article->id }}">Quantité en Kg:</label>
+                                <input type="number" name="quantite" id="quantite_{{ $article->id }}" min="1"
+                                    required>
+                                <button type="submit">Ajouter au panier</button>
+                            </form>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
     @endforeach
+
+    <!-- Affichage si aucun article n'est trouvé -->
+    @if(isset($articles) && $articles->isEmpty())
+        <p>Aucun article trouvé pour cette recherche.</p>
+    @endif
+
+    <!-- Bouton retour à l'index -->
+    @if(isset($articles) && $articles->isNotEmpty())
+        <a href="{{ route('commandes.index') }}" class="back-to-index-button">Retour aux commandes</a>
+    @endif
 </body>
 
 </html>

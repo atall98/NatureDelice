@@ -15,7 +15,7 @@ class ArticleController extends Controller
         $articles = Article::all();
         return view('articles.index', compact('articles'));
     }
-    
+
 
     // Afficher le formulaire de création d'un article
     public function create()
@@ -97,5 +97,7 @@ class ArticleController extends Controller
         $article->delete();
         return redirect()->route('articles.index')->with('success', 'Article supprimé avec succès');
     }
-}
 
+
+
+}

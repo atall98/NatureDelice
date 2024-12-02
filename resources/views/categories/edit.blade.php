@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier la Catégorie</title>
+    <title>Modifier une catégorie</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,9 +12,44 @@
             margin: 0;
             padding: 0;
         }
+        .navbar {
+            background-color: #4CAF50;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        .navbar h1 {
+            margin-left: 20px;
+            font-size: 24px;
+            color: white;
+        }
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+            margin-right: 20px;
+        }
+        .navbar ul li {
+            display: inline;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navbar ul li a:hover {
+            background-color: #333;
+        }
         .container {
-            max-width: 600px;
-            margin: 40px auto;
+            max-width: 900px;
+            margin: 20px auto;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -23,18 +58,6 @@
             text-align: center;
             margin-bottom: 20px;
             color: #4CAF50;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
         }
         .btn {
             padding: 10px 15px;
@@ -51,37 +74,24 @@
         .btn-primary:hover {
             background-color: #0056b3;
         }
-        .btn-secondary {
-            background-color: #6c757d;
-            color: white;
-            border: none;
-        }
-        .btn-secondary:hover {
-            background-color: #5a6268;
-        }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h1>Modifier la Catégorie</h1>
-
-    <form action="{{ route('categories.update', ['categorie' => $categorie->id]) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="form-group">
-            <label for="name">Nom de la Catégorie</label>
-            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" 
-                   value="{{ old('name', $categorie->name) }}" required>
-            @error('name')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <button type="submit" class="btn btn-primary">Mettre à jour</button>
-        <a href="{{ route('categories.index') }}" class="btn btn-secondary">Annuler</a>
-    </form>
-    
-</div>
-
+    <div class="container">
+        <h1>Modifier une catégorie</h1>
+        <form action="{{ route('categories.update', $categorie) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" class="form-control" value="{{ $categorie->name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" class="form-control">{{ $categorie->description }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+        </form>
+    </div>
 </body>
 </html>

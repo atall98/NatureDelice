@@ -11,7 +11,7 @@
             color: #333;
             margin: 0;
             padding: 0;
-        }
+        } 
          /* Barre de navigation */
          .navbar {
             display: flex;
@@ -82,6 +82,43 @@
             border-bottom: 1px solid #ddd;
         }
         th { background-color: #f1f1f1; }
+        .card-footer {
+            padding: 10px;
+            text-align: right;
+            background-color: #f1f1f1;
+            border-top: 1px solid #ddd;
+        }
+        .btn {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
 <body>
@@ -98,10 +135,15 @@
             <p><strong>Téléphone :</strong> {{ $client->adresse }}</p>
             <p><strong>Créé le :</strong> {{ $client->created_at->format('d-m-Y H:i') }}</p>
         </div>
-    </div>
-
-    <a href="{{ route('clients.index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
-</div>
+        <div class="card-footer">
+            <a href="{{ route('clients.index') }}" class="btn btn-secondary">Retour</a>
+            <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-warning">Modifier</a>
+            <form action="{{ route('clients.destroy', $client->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet client ?')">Supprimer</button>
+            </form>
+        </div>
 
 </body>
 </html>

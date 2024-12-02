@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utilisateur</title>
+    <title>User</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,9 +40,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>{{ $utilisateur->nom }}</h1>
-        <p>Email : {{ $utilisateur->email }}</p>
-        <a href="{{ route('utilisateurs.index') }}" class="back-button">Retour à la liste</a>
+        <h1>{{ $user->nom }}</h1>
+        <p>Email : {{ $user->email }}</p>
+        <a href="{{ route('users.index') }}" class="back-button">Retour à la liste</a>
     </div>
 </body>
 </html>

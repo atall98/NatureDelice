@@ -42,17 +42,42 @@
         input[type="file"] {
             padding: 0;
         }
-        button {
+        .card-footer {
+            padding: 10px;
+            text-align: right;
+            background-color: #f1f1f1;
+            border-top: 1px solid #ddd;
+        }
+        .btn {
             padding: 10px 15px;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
+            font-size: 1rem;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1rem;
+            text-decoration: none;
         }
-        button:hover {
-            background-color: #0056b3;
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
         }
         img {
             max-width: 100px;
@@ -102,7 +127,16 @@
             <textarea name="description" id="description" class="form-control">{{ old('description', $article->description) }}</textarea>
         </div>
 
-        <button type="submit">Mettre à jour</button>
+        
+        <div class="card-footer">
+            <button type="submit">Mettre à jour</button>
+            <a href="{{ route('articles.index') }}" class="btn btn-secondary">Retour à la liste</a>
+            <form action="{{ route('articles.destroy', $article->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <btn type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')">Supprimer</button>
+            </form>
+        </div>
     </form>
 </div>
 

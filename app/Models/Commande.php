@@ -25,5 +25,9 @@ class Commande extends Model
     {
         return $this->belongsTo(Client::class);
     }
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
 }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier un utilisateur</title>
+    <title>Ajouter un user</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,7 +40,7 @@
             border-radius: 5px;
         }
         button {
-            background-color: #007bff;
+            background-color: #28a745;
             color: white;
             padding: 10px 15px;
             border: none;
@@ -49,27 +49,25 @@
             width: 100%;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Modifier l'utilisateur</h1>
-        <form action="{{ route('utilisateurs.update', $utilisateur->id) }}" method="POST">
+        <h1>Ajouter un user</h1>
+        <form action="{{ route('users.store') }}" method="POST">
             @csrf
-            @method('PUT')
-
             <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" value="{{ $utilisateur->nom }}" required>
+            <input type="text" id="nom" name="nom" required>
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" value="{{ $utilisateur->email }}" required>
+            <input type="email" id="email" name="email" required>
 
-            <label for="password">Mot de passe (laissez vide pour ne pas modifier)</label>
-            <input type="password" id="password" name="password">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" required>
 
-            <button type="submit">Mettre à jour</button>
+            <button type="submit">Ajouter</button>
         </form>
     </div>
 </body>

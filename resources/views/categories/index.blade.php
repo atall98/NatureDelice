@@ -121,7 +121,7 @@
             <li><a href="{{ route('categories.index') }}">Catégorie</a></li>
             <li><a href="{{ route('clients.index') }}">Client</a></li>
             <li><a href="{{ route('commandes.index') }}">Commande</a></li>
-            <li><a href="{{ route('utilisateurs.index') }}">Utilisateur</a></li>
+            <li><a href="{{ route('users.index') }}">Utilisateur</a></li>
         </ul>
     </nav>
 
@@ -149,6 +149,7 @@
                     <td>
                         <a href="{{ route('categories.show', $categorie->id) }}" class="btn btn-primary">Voir</a>
                         <a href="{{ route('categories.edit', $categorie->id) }}" class="btn btn-warning">Modifier</a>
+                        
                         
                         <form action="{{ route('categories.destroy', $categorie->id) }}" method="POST" style="display:inline;">
                             @csrf
